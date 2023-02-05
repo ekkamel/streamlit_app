@@ -37,6 +37,17 @@ st.bar_chart(hist_values)
 
 
 # Plot data on a map
-st.subheader('Map of all pickups')
-st.map(data)
+# st.subheader('Map of all pickups')
+# st.map(data)
+
+# The alternative is to analyze one hour (rush hour)
+
+# hour_to_filter = 17
+# Let's use a slider for this 
+
+hour_to_filter = st.sidebar.slider('hour', 0, 23, 17)
+
+filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter]
+st.subheader(f'Map of all pickups at {hour_to_filter}:00')
+st.map(filtered_data)
 
